@@ -16,7 +16,7 @@ minetest.register_craftitem('xtraores:platinum_bar', {
 })
 
 minetest.register_craftitem('xtraores:palladium_bar', {
-    description = "" .. core.colorize("#68fff6", "palladium bar\n") ..
+    description = "" .. core.colorize("#68fff6", "Ralladium bar\n") ..
         core.colorize("#FFFFFF", "Material\n") ..
         core.colorize("#FFFFFF", "Xtraores material level: 3"),
     inventory_image = "xtraores_palladium_bar.png",
@@ -56,7 +56,7 @@ minetest.register_craftitem('xtraores:rhenium_bar', {
 })
 
 minetest.register_craftitem('xtraores:vanadium_bar', {
-    description = "" .. core.colorize("#68fff6", "vanadium bar\n") ..
+    description = "" .. core.colorize("#68fff6", "Vanadium bar\n") ..
         core.colorize("#FFFFFF", "Material\n") ..
         core.colorize("#FFFFFF", "Xtraores material level: 8"),
     inventory_image = "xtraores_vanadium_bar.png",
@@ -64,7 +64,7 @@ minetest.register_craftitem('xtraores:vanadium_bar', {
 })
 
 minetest.register_craftitem('xtraores:rarium_bar', {
-    description = "" .. core.colorize("#68fff6", "rarium bar\n") ..
+    description = "" .. core.colorize("#68fff6", "Rarium bar\n") ..
         core.colorize("#FFFFFF", "Material\n") ..
         core.colorize("#FFFFFF", "Xtraores material level: 9"),
     inventory_image = "xtraores_rarium_bar.png",
@@ -80,7 +80,7 @@ minetest.register_craftitem('xtraores:orichalcum_bar', {
 })
 
 minetest.register_craftitem('xtraores:titanium_bar', {
-    description = "" .. core.colorize("#68fff6", "titanium bar\n") ..
+    description = "" .. core.colorize("#68fff6", "Titanium bar\n") ..
         core.colorize("#FFFFFF", "Material\n") ..
         core.colorize("#FFFFFF", "Xtraores material level: 11"),
     inventory_image = "xtraores_titanium_bar.png",
@@ -88,7 +88,7 @@ minetest.register_craftitem('xtraores:titanium_bar', {
 })
 
 minetest.register_craftitem('xtraores:uranium_bar', {
-    description = "" .. core.colorize("#68fff6", "uranium bar\n") ..
+    description = "" .. core.colorize("#68fff6", "Uranium bar\n") ..
         core.colorize("#FFFFFF", "Material\n") ..
         core.colorize("#FFFFFF", "Xtraores material level: 11"),
     inventory_image = "xtraores_uranium_bar.png",
@@ -96,7 +96,7 @@ minetest.register_craftitem('xtraores:uranium_bar', {
 })
 
 minetest.register_craftitem('xtraores:chromium_bar', {
-    description = "" .. core.colorize("#68fff6", "chromium bar\n") ..
+    description = "" .. core.colorize("#68fff6", "Chromium bar\n") ..
         core.colorize("#FFFFFF", "Material\n") ..
         core.colorize("#FFFFFF", "Xtraores material level: 12"),
     inventory_image = "xtraores_chromium_bar.png",
@@ -257,7 +257,7 @@ if minetest.settings:get("xtraores_enable_guns") == "true" then
     --------------------orichalcum_rifle_parts-------------
 
     minetest.register_craftitem('xtraores:orichalcum_rifle_base', {
-        description = "" .. core.colorize("#68fff6", "orichalcum rifle base\n") ..
+        description = "" .. core.colorize("#68fff6", "Orichalcum rifle base\n") ..
             core.colorize("#FFFFFF", "Material\n") ..
             core.colorize("#FFFFFF", "Xtraores material level: 10"),
         inventory_image = "xtraores_orichalcum_rifle_base.png",
@@ -275,7 +275,7 @@ if minetest.settings:get("xtraores_enable_guns") == "true" then
     })
 
     minetest.register_craftitem('xtraores:orichalcum_rifle_scope', {
-        description = "" .. core.colorize("#68fff6", "orichalcum rifle scope\n") ..
+        description = "" .. core.colorize("#68fff6", "Orichalcum rifle scope\n") ..
             core.colorize("#FFFFFF", "Material\n") ..
             core.colorize("#FFFFFF", "Xtraores material level: 10"),
         inventory_image = "xtraores_orichalcum_rifle_scope.png",
@@ -292,7 +292,7 @@ if minetest.settings:get("xtraores_enable_guns") == "true" then
     })
 
     minetest.register_craftitem('xtraores:orichalcum_rifle_stock', {
-        description = "" .. core.colorize("#68fff6", "orichalcum rifle stock\n") ..
+        description = "" .. core.colorize("#68fff6", "Orichalcum rifle stock\n") ..
             core.colorize("#FFFFFF", "Material\n") ..
             core.colorize("#FFFFFF", "Xtraores material level: 10"),
         inventory_image = "xtraores_orichalcum_rifle_stock.png",
@@ -312,7 +312,7 @@ if minetest.settings:get("xtraores_enable_guns") == "true" then
 
     minetest.register_craftitem('xtraores:orichalcum_rifle_barrel', {
         description = "" ..
-            core.colorize("#68fff6", "orichalcum rifle barrel\n") ..
+            core.colorize("#68fff6", "Orichalcum rifle barrel\n") ..
             core.colorize("#FFFFFF", "Material\n") ..
             core.colorize("#FFFFFF", "Xtraores material level: 10"),
         inventory_image = "xtraores_orichalcum_rifle_barrel.png",
@@ -330,7 +330,7 @@ if minetest.settings:get("xtraores_enable_guns") == "true" then
     })
 
     minetest.register_craftitem('xtraores:orichalcum_rifle_grip', {
-        description = "" .. core.colorize("#68fff6", "orichalcum rifle grip\n") ..
+        description = "" .. core.colorize("#68fff6", "Orichalcum rifle grip\n") ..
             core.colorize("#FFFFFF", "Material\n") ..
             core.colorize("#FFFFFF", "Xtraores material level: 10"),
         inventory_image = "xtraores_orichalcum_rifle_grip.png",
@@ -352,7 +352,7 @@ if minetest.settings:get("xtraores_enable_guns") == "true" then
 
     minetest.register_craftitem('xtraores:orichalcum_rifle_handle', {
         description = "" ..
-            core.colorize("#68fff6", "orichalcum rifle handle\n") ..
+            core.colorize("#68fff6", "Orichalcum rifle handle\n") ..
             core.colorize("#FFFFFF", "Material\n") ..
             core.colorize("#FFFFFF", "Xtraores material level: 10"),
         inventory_image = "xtraores_orichalcum_rifle_handle.png",

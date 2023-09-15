@@ -1,5 +1,6 @@
 xtraores = {}
 xtraores.path = minetest.get_modpath("xtraores")
+xtraores.debug_textures = minetest.settings:get_bool("xtraores_debug_textures", false)
 
 dofile(xtraores.path .. "/ores.lua")
 dofile(xtraores.path .. "/items.lua")
@@ -9,9 +10,14 @@ dofile(xtraores.path .. "/oreblocks.lua")
 dofile(xtraores.path .. "/special_weapons.lua")
 dofile(xtraores.path .. "/other_blocks.lua")
 dofile(xtraores.path .. "/awards.lua")
+if xtraores.debug_textures == true then
+    minetest.log("action", "Debugging textures ...")
+    dofile(xtraores.path .. "/debug.lua")
+else
+    minetest.log("action", "Not debugging textures ...")
+end
 
-minetest.register_globalstep(function(dtime, player, pos)
-
+minetest.register_globalstep(function(dtime)
     for _, player in pairs(minetest.get_connected_players()) do
         local meta = player:get_meta()
         local xo_weapon_cool_down = meta:get_int("xo_weapon_cooldown") or 0
@@ -25,11 +31,11 @@ minetest.register_globalstep(function(dtime, player, pos)
             if w_item:get_definition().projectile_attack ~= nil then
 
                 meta = player:get_meta()
-                xo_wpn_c_down = meta:get_int("xo_weapon_cooldown") or 0
+                xtraores.xo_wpn_c_down = meta:get_int("xo_weapon_cooldown") or 0
                 local xo_proj_c_down =
                     w_item:get_definition().projectile_cooldown or 20
-                if xo_wpn_c_down > xo_proj_c_down then
-                    shooter = player
+                if xtraores.xo_wpn_c_down > xo_proj_c_down then
+                    xtraores.shooter = player
                     meta:set_int("xo_weapon_cooldown", 0)
                     local inv = player:get_inventory()
 

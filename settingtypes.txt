@@ -1,2 +1,5 @@
 #    If true, enable craftable guns
 xtraores_enable_guns (Enable guns) bool false
+
+#    If true, hot reload textures. Only useful for mod development/customization
+xtraores_debug_textures (Enable texture hot reloading) bool false

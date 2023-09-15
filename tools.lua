@@ -1,3 +1,86 @@
+local tpl = "Mele damage: %d\nFull punch interval: %.01f\nRange: %.01f\n" ..
+                "Xtraores tool level: %d"
+
+local ToolSet = {
+    name = "",
+    level = 0,
+    stick = "group:stick",
+
+    new = function(self, o)
+        o = o or {}
+        setmetatable(o, self)
+        self.__index = self
+        return o
+    end,
+
+    attr = function(self, tool, attr)
+        if self[tool] and self[tool][attr] then
+            return self[tool][attr]
+        else
+            return self[attr]
+        end
+    end,
+
+    descr = function(self, tool)
+        local n = self.name .. " " .. tool .. "\n"
+        local d = tpl:format(self:attr(tool, "mele_damage"),
+                             self:attr(tool, "full_punch_interval"),
+                             self:attr(tool, "range"), self:attr(tool, "level"))
+        return core.colorize("#68fff6", n) .. core.colorize("#FFFFFF", d)
+    end
+}
+
+function xtraores.register_tool_set(set)
+    -- Internal name
+    local lname = string.lower(set.name):gsub(" ", "_")
+    local ingot = 'xtraores:' .. lname .. "_bar"
+    local stick = set.stick
+    local tools = {
+        pickaxe = { -- recipe
+            {ingot, ingot, ingot}, {'', stick, ''}, {'', stick, ''}
+        },
+        shovel = { -- recipe
+            {'', ingot, ''}, {'', stick, ''}, {'', stick, ''}
+        }
+    }
+
+    for tool, recipe in pairs(tools) do
+        local tool_id = "xtraores:" .. tool .. "_" .. lname
+        minetest.log("action", "Registering " .. tool_id)
+        minetest.register_tool(tool_id, {
+            description = set:descr(tool),
+            inventory_image = "xtraores_" .. tool .. "_" .. lname .. ".png",
+            range = set:attr(tool, "range"),
+            tool_capabilities = {
+                full_punch_interval = set:attr(tool, "full_punch_inverval"),
+                max_drop_level = 1,
+                groupcaps = set:attr(tool, "groupcaps") or {},
+                damage_groups = {fleshy = set:attr(tool, "mele_damage")}
+            },
+            sound = {breaks = "default_tool_breaks"}
+        })
+        minetest.register_craft({output = tool_id, recipe = recipe})
+    end
+end
+
+xtraores.register_tool_set(ToolSet:new{
+    name = "TestNickel",
+    level = 1,
+    range = 4.0,
+    full_punch_interval = 1.0,
+    mele_damage = 3.0,
+
+    pickaxe = {
+        groupcaps = {
+            cracky = {
+                times = {[1] = 6.00, [2] = 1.85, [3] = 0.90},
+                uses = 15,
+                maxlevel = 2
+            }
+        }
+    }
+})
+
 -------------------nickel set-------------------
 minetest.register_tool("xtraores:pickaxe_nickel", {
     description = "" .. core.colorize("#68fff6", "Nickel pickaxe\n") ..

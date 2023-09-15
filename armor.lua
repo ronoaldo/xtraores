@@ -1,8 +1,8 @@
 if minetest.get_modpath("3d_armor") then
     -- Helper to format item description
-    local tpl = "Protection: %d%%\nHeal chance: %d%%\n" ..
-                    "Speed bonus: %d%%\nJump bonus: %d%%\nGravity bonus: %d%%\n" ..
-                    "Xtraores armor level: %d"
+    local tpl =
+        "Protection: %d%%\nHeal chance: %d%%\n" .. "Speed bonus: %d%%\nJump bonus: %d%%\nGravity bonus: %d%%\n" ..
+            "Xtraores armor level: %d"
 
     -- Helper to setup the armor set attributes
     local ArmorSet = {
@@ -15,12 +15,6 @@ if minetest.get_modpath("3d_armor") then
         gravity_bonus = 0,
         jump_bonus = 0,
         armor_use = 0,
-
-        helmet = {},
-        chestplate = {},
-        leggings = {},
-        boots = {},
-        shield = {},
 
         new = function(self, o)
             o = o or {}
@@ -37,18 +31,21 @@ if minetest.get_modpath("3d_armor") then
         end,
 
         part_name = function(self, part)
-            if self[part]['name'] then return self[part]['name'] end
+            if self[part] and self[part]['name'] then
+                return self[part]['name']
+            end
             return part
         end,
 
         descr = function(self, part)
             local n = self.name .. " " .. self:part_name(part) .. "\n"
-            local d = tpl:format(self:attr(part, "protection"),
-                                 self:attr(part, "heal"),
-                                 self:attr(part, "speed_bonus") * 100,
-                                 self:attr(part, "jump_bonus") * 100,
-                                 self:attr(part, "gravity_bonus") * 100,
-                                 self.level)
+            local d = tpl:format( --
+            self:attr(part, "protection"), --
+            self:attr(part, "heal"), --
+            self:attr(part, "speed_bonus") * 100, --
+            self:attr(part, "jump_bonus") * 100, --
+            self:attr(part, "gravity_bonus") * 100, --
+            self.level)
             return core.colorize("#68fff6", n) .. core.colorize("#FFFFFF", d)
         end,
 
@@ -82,13 +79,7 @@ if minetest.get_modpath("3d_armor") then
         local lname = string.lower(set.name):gsub(" ", "_")
         local ingot = 'xtraores:' .. lname .. "_bar"
         -- All parts share the same damage group values
-        local damage_groups = {
-            cracky = 2,
-            snappy = 3,
-            choppy = 2,
-            crumbly = 1,
-            level = 2
-        }
+        local damage_groups = {cracky = 2, snappy = 3, choppy = 2, crumbly = 1, level = 2}
         local armor_parts = {
             helmet = { -- helmet recipe
                 {ingot, ingot, ingot}, {ingot, '', ingot}, {'', '', ''}
@@ -108,19 +99,14 @@ if minetest.get_modpath("3d_armor") then
         }
 
         for part, recipe in pairs(armor_parts) do
-            -- Helmet
             armor:register_armor("xtraores:" .. part .. "_" .. lname, {
                 description = set:descr(part, set.name),
-                inventory_image = "xtraores_inv_" .. part .. "_" .. lname ..
-                    ".png",
+                inventory_image = "xtraores_inv_" .. part .. "_" .. lname .. ".png",
                 groups = set:groups(part),
                 armor_groups = {fleshy = set:attr(part, "protection")},
                 damage_groups = damage_groups
             })
-            minetest.register_craft({
-                output = "xtraores:" .. part .. "_" .. lname,
-                recipe = recipe
-            })
+            minetest.register_craft({output = "xtraores:" .. part .. "_" .. lname, recipe = recipe})
         end
     end
 
@@ -334,7 +320,6 @@ if minetest.get_modpath("3d_armor") then
         boots = {name = "heavy boots"},
         shield = {name = "heavy shield"}
     })
-
 
     -- Chromium
     xtraores.register_armor_set(ArmorSet:new{
